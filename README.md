@@ -1,4 +1,4 @@
-# Mission-Control-AI-EnviroSat
+# Mission Control AI — EnviroSat
 
 ## Integrante
 
