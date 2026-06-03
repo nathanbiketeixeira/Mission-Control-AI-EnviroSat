@@ -29,5 +29,20 @@
     "geolocalizacao": 55,
     "buffer_imagens": 40,
     "sensor_optico": "ATENÇÃO"
-  }
+  },
+  "temperatura_extrema": {
+  "temperatura": 500,
+  "energia": 70,
+  "geolocalizacao": 95,
+  "buffer_imagens": 20,
+  "sensor_optico": "CRÍTICO"
+},
+
+"energia_negativa": {
+  "temperatura": 40,
+  "energia": -5,
+  "geolocalizacao": 90,
+  "buffer_imagens": 30,
+  "sensor_optico": "ATENÇÃO"
+}
 }
