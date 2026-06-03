@@ -1,51 +1,92 @@
+from pathlib import Path
+from ollama import chat
 from src.telemetria import coletar
 from src.alertas import avaliar
 
 class MissionEngine:
 
-    def __init__(self):
-        pass
+```
+def __init__(self):
 
-    def is_ready(self):
-        return True
+    self.system_prompt = Path(
+        "prompts/system_prompt.md"
+    ).read_text(
+        encoding="utf-8"
+    )
 
-    def status_snapshot(self):
+def is_ready(self):
+    return True
 
-        dados = coletar()
+def status_snapshot(self):
+
+    dados = coletar()
+
+    return f"""
+```
+
+Temperatura: {dados['temperatura']}°C
+Energia: {dados['energia']}%
+Precisão GPS: {dados['geolocalizacao']}%
+Buffer: {dados['buffer_imagens']}%
+Sensor Óptico: {dados['sensor_optico']}
+"""
+
+```
+def analyze(self, pergunta_usuario):
+
+    dados = coletar()
+
+    alertas = avaliar(dados)
+
+    prompt_dinamico = f"""
+```
+
+Pergunta do operador:
+
+{pergunta_usuario}
+
+Dados atuais da missão:
+
+Temperatura: {dados['temperatura']}°C
+Energia: {dados['energia']}%
+Precisão GPS: {dados['geolocalizacao']}%
+Buffer: {dados['buffer_imagens']}%
+Sensor Óptico: {dados['sensor_optico']}
+
+Alertas:
+
+{chr(10).join(alertas) if alertas else "Nenhum alerta encontrado."}
+"""
+
+```
+    try:
+
+        resposta = chat(
+            model="gpt-oss:120b",
+            messages=[
+                {
+                    "role": "system",
+                    "content": self.system_prompt
+                },
+                {
+                    "role": "user",
+                    "content": prompt_dinamico
+                }
+            ]
+        )
+
+        return resposta["message"]["content"]
+
+    except Exception as erro:
 
         return f"""
-Temperatura: {dados['temperatura']}°C
-Energia: {dados['energia']}%
-Precisão GPS: {dados['geolocalizacao']}%
-Buffer: {dados['buffer_imagens']}%
-Sensor Óptico: {dados['sensor_optico']}
+```
+
+ERRO AO ACESSAR A IA
+
+{erro}
+
+Prompt que seria enviado:
+
+{prompt_dinamico}
 """
-
-    def analyze(self, pergunta_usuario):
-
-        dados = coletar()
-
-        alertas = avaliar(dados)
-
-        resposta = f"""
-=== TELEMETRIA ===
-
-Temperatura: {dados['temperatura']}°C
-Energia: {dados['energia']}%
-Precisão GPS: {dados['geolocalizacao']}%
-Buffer: {dados['buffer_imagens']}%
-Sensor Óptico: {dados['sensor_optico']}
-
-=== ALERTAS ===
-
-"""
-
-        if alertas:
-
-            for alerta in alertas:
-                resposta += f"\n• {alerta}"
-
-        else:
-            resposta += "\nNenhum alerta encontrado."
-
-        return resposta
