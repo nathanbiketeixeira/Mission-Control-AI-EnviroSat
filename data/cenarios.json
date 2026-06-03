@@ -1,0 +1,33 @@
+{
+  "normal": {
+    "temperatura": 35,
+    "energia": 85,
+    "geolocalizacao": 98,
+    "buffer_imagens": 20,
+    "sensor_optico": "OK"
+  },
+
+  "temperatura_critica": {
+    "temperatura": 85,
+    "energia": 75,
+    "geolocalizacao": 95,
+    "buffer_imagens": 30,
+    "sensor_optico": "OK"
+  },
+
+  "energia_critica": {
+    "temperatura": 40,
+    "energia": 15,
+    "geolocalizacao": 92,
+    "buffer_imagens": 35,
+    "sensor_optico": "OK"
+  },
+
+  "falha_geolocalizacao": {
+    "temperatura": 42,
+    "energia": 70,
+    "geolocalizacao": 55,
+    "buffer_imagens": 40,
+    "sensor_optico": "ATENÇÃO"
+  }
+}
