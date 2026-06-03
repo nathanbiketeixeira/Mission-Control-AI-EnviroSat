@@ -19,7 +19,9 @@ A plataforma coleta dados simulados de telemetria, identifica situações críti
 
 Operador de Centro de Controle Ambiental.
 
-Esse profissional acompanha queimadas, desmatamento e áreas protegidas utilizando informações provenientes de satélites de observação da Terra.
+Esse profissional acompanha queimadas, desmatamento, áreas protegidas e eventos climáticos utilizando dados provenientes de satélites de observação da Terra.
+
+Sua principal necessidade é identificar rapidamente situações críticas e compreender seus impactos operacionais e ambientais para apoiar a tomada de decisão.
 
 ---
 
@@ -43,6 +45,24 @@ Esse profissional acompanha queimadas, desmatamento e áreas protegidas utilizan
 * PyFiglet
 
 ---
+
+# Integração com IA
+
+O projeto utiliza o modelo GPT-OSS 120B através do ecossistema Ollama.
+
+Os dados de telemetria são coletados dinamicamente pelo sistema e inseridos no prompt enviado ao modelo.
+
+A IA recebe:
+
+* Temperatura
+* Energia
+* Precisão de geolocalização
+* Buffer de imagens
+* Estado do sensor óptico
+* Alertas gerados em Python
+
+Com base nesses dados, produz análises operacionais, avaliação de risco e recomendações para os operadores da missão.
+
 
 # Como Executar
 
@@ -111,6 +131,20 @@ Falha de Geolocalização
 Erro na precisão de posicionamento.
 
 ---
+
+# Evolução do Prompt
+
+## Versão 1
+
+Prompt genérico para análise de telemetria.
+
+## Versão 2
+
+Inclusão de contexto ambiental e monitoramento de queimadas.
+
+## Versão 3
+
+Inclusão de impacto social, classificação de risco e recomendações operacionais.
 
 # Proposta de Valor
 
