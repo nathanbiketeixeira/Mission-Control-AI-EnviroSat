@@ -118,7 +118,7 @@ Com base nesses dados, produz análises operacionais, avaliação de riscos e re
 ## 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seuusuario/mission-control-ai.git
+git clone https://github.com/nathanbiketeixeira/Mission-Control-AI-EnviroSat.git
 ```
 
 ## 2. Acesse a pasta do projeto
