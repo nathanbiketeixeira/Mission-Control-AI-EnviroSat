@@ -3,26 +3,25 @@ from ollama import chat
 from src.telemetria import coletar
 from src.alertas import avaliar
 
+
 class MissionEngine:
 
+    def __init__(self):
+        self.system_prompt = Path(
+            "prompts/system_prompt.md"
+        ).read_text(
+            encoding="utf-8"
+        )
 
-def __init__(self):
+    def is_ready(self):
+        return True
 
-    self.system_prompt = Path(
-        "prompts/system_prompt.md"
-    ).read_text(
-        encoding="utf-8"
-    )
+    def status_snapshot(self):
 
-def is_ready(self):
-    return True
+        dados = coletar()
 
-def status_snapshot(self):
-
-    dados = coletar()
-
-    return f"""
-
+        return f"""
+ STATUS ATUAL DA MISSÃO ENVIROSAT
 
 Temperatura: {dados['temperatura']}°C
 Energia: {dados['energia']}%
@@ -31,16 +30,13 @@ Buffer: {dados['buffer_imagens']}%
 Sensor Óptico: {dados['sensor_optico']}
 """
 
+    def analyze(self, pergunta_usuario):
 
-def analyze(self, pergunta_usuario):
+        dados = coletar()
 
-    dados = coletar()
+        alertas = avaliar(dados)
 
-    alertas = avaliar(dados)
-
-    prompt_dinamico = f"""
-
-
+        prompt_dinamico = f"""
 Pergunta do operador:
 
 {pergunta_usuario}
@@ -58,31 +54,28 @@ Alertas:
 {chr(10).join(alertas) if alertas else "Nenhum alerta encontrado."}
 """
 
+        try:
 
-    try:
+            resposta = chat(
+                model="llama3.2",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": self.system_prompt
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt_dinamico
+                    }
+                ]
+            )
 
-        resposta = chat(
-            model="gpt-oss:120b",
-            messages=[
-                {
-                    "role": "system",
-                    "content": self.system_prompt
-                },
-                {
-                    "role": "user",
-                    "content": prompt_dinamico
-                }
-            ]
-        )
+            return resposta["message"]["content"]
 
-        return resposta["message"]["content"]
+        except Exception as erro:
 
-    except Exception as erro:
-
-        return f"""
-
-
-ERRO AO ACESSAR A IA
+            return f"""
+⚠️ ERRO AO ACESSAR A IA
 
 {erro}
 
