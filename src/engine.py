@@ -5,7 +5,7 @@ from src.alertas import avaliar
 
 class MissionEngine:
 
-```
+
 def __init__(self):
 
     self.system_prompt = Path(
@@ -22,7 +22,7 @@ def status_snapshot(self):
     dados = coletar()
 
     return f"""
-```
+
 
 Temperatura: {dados['temperatura']}°C
 Energia: {dados['energia']}%
@@ -31,7 +31,7 @@ Buffer: {dados['buffer_imagens']}%
 Sensor Óptico: {dados['sensor_optico']}
 """
 
-```
+
 def analyze(self, pergunta_usuario):
 
     dados = coletar()
@@ -39,7 +39,7 @@ def analyze(self, pergunta_usuario):
     alertas = avaliar(dados)
 
     prompt_dinamico = f"""
-```
+
 
 Pergunta do operador:
 
@@ -58,7 +58,7 @@ Alertas:
 {chr(10).join(alertas) if alertas else "Nenhum alerta encontrado."}
 """
 
-```
+
     try:
 
         resposta = chat(
@@ -80,7 +80,7 @@ Alertas:
     except Exception as erro:
 
         return f"""
-```
+
 
 ERRO AO ACESSAR A IA
 
