@@ -174,6 +174,24 @@ Data as a Service (DaaS) por assinatura.
 
 ---
 
+# Demonstração
+
+## Tela Inicial
+
+![Tela Inicial](assets/tela_inicial.png)
+
+## Estado Atual da Missão
+
+![Estado da Missão](assets/estado_missao.png)
+
+## Análise Completa dos Sensores
+
+![Análise dos Sensores](assets/analise_sensores.png)
+
+## Avaliação de Risco Operacional
+
+![Risco Operacional](assets/risco_operacional.png)
+
 # Vídeo de Demonstração
 
 Inserir link do YouTube após gravação.
