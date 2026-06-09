@@ -38,17 +38,66 @@ Sua principal necessidade é identificar rapidamente situações críticas e com
 # Tecnologias Utilizadas
 
 * Python 3.10+
-* Ollama Cloud
-* GPT-OSS 120B
+* Ollama
+* Llama 3.2
 * Python-dotenv
 * Rich
 * PyFiglet
 
 ---
 
+# Estrutura do Projeto
+
+```text
+Mission-Control-AI-EnviroSat-main
+│
+├── assets/
+│   ├── tela_inicial.png
+│   ├── estado_missao.png
+│   ├── analise_sensores.png
+│   └── risco_operacional.png
+│
+├── data/
+│   └── cenarios.json
+│
+├── prompts/
+│   └── system_prompt.md
+│
+├── src/
+│   ├── alertas.py
+│   ├── engine.py
+│   ├── telemetria.py
+│   └── ui.py
+│
+├── main.py
+├── requirements.txt
+└── README.md
+
+---
+
+## 3. Resultados Obtidos
+
+Antes da seção "Limitações":
+
+```md
+---
+
+# Resultados Obtidos
+
+O sistema foi capaz de:
+
+- Simular telemetria de um satélite ambiental.
+- Detectar automaticamente situações críticas.
+- Gerar alertas operacionais.
+- Utilizar Inteligência Artificial Generativa para interpretar os dados.
+- Produzir recomendações para operadores ambientais.
+- Demonstrar a integração entre Python, Engenharia de Software e IA Generativa.
+
+Os testes realizados mostraram o correto funcionamento dos módulos de coleta de telemetria, geração de alertas e análise inteligente da missão.
+
 # Integração com IA
 
-O projeto utiliza o modelo GPT-OSS 120B através do ecossistema Ollama.
+O projeto utiliza o modelo Llama 3.2 através do Ollama.
 
 Os dados de telemetria são coletados dinamicamente pelo sistema e inseridos no prompt enviado ao modelo.
 
